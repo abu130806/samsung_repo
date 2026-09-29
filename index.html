@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samsung Vision Hub | Next-Gen AI & Smart Ecosystem</title>
+  <meta name="description" content="Experience the next generation of Samsung Galaxy AI, SmartThings IoT Automation, and Premium Product Configurator in one unified intelligent hub.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Background Glow & Particle Canvas -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+  <canvas id="ambient-canvas"></canvas>
+
+  <div class="app-layout">
+    <!-- Navigation Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-bolt-lightning"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">SAMSUNG</span>
+          <span class="brand-sub">VISION HUB</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="dashboard">
+          <i class="fa-solid fa-border-all"></i>
+          <span>Overview</span>
+        </button>
+        <button class="nav-item" data-tab="smarthome">
+          <i class="fa-solid fa-house-signal"></i>
+          <span>SmartThings IoT</span>
+          <span class="badge">12 Active</span>
+        </button>
+        <button class="nav-item" data-tab="galaxy-ai">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Galaxy AI Studio</span>
+          <span class="badge badge-neon">New</span>
+        </button>
+        <button class="nav-item" data-tab="showcase">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>3D Configurator</span>
+        </button>
+        <button class="nav-item" data-tab="energy">
+          <i class="fa-solid fa-leaf"></i>
+          <span>Eco & Energy Grid</span>
+        </button>
+        <button class="nav-item" data-tab="diagnostics">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Device Health</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-pill">
+          <div class="avatar">
+            <i class="fa-solid fa-user-astronaut"></i>
+          </div>
+          <div class="user-info">
+            <span class="user-name">Alex Rivera</span>
+            <span class="user-role">Samsung VIP Member</span>
+          </div>
+          <button class="settings-btn" id="open-settings-btn" title="Settings">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="top-header">
+        <div class="header-left">
+          <h1 id="page-title">Ecosystem Overview</h1>
+          <p class="subtitle" id="page-subtitle">Real-time intelligent sync with 14 connected Samsung devices.</p>
+        </div>
+
+        <div class="header-actions">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search devices, AI features, settings..." id="global-search">
+          </div>
+
+          <button class="action-btn icon-btn" id="theme-toggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+
+          <button class="action-btn icon-btn" id="notif-btn" title="Notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notif-dot"></span>
+          </button>
+
+          <button class="btn btn-primary" id="sync-all-btn">
+            <i class="fa-solid fa-rotate"></i>
+            <span>Quick Sync</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB CONTENT: Dashboard Overview -->
+      <section class="tab-pane active" id="tab-dashboard">
+        <!-- Hero Banner -->
+        <div class="hero-card">
+          <div class="hero-content">
+            <span class="chip chip-ai"><i class="fa-solid fa-sparkles"></i> Galaxy AI 2.0 Enabled</span>
+            <h2>Welcome to Your Unified Samsung Vision Space</h2>
+            <p>Your SmartThings network is currently running at 99.4% efficiency. 3 devices require energy optimization recommendations.</p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary" id="launch-ai-mode"><i class="fa-solid fa-wand-magic-sparkles"></i> Run AI Scene Automator</button>
+              <button class="btn btn-glass" id="view-devices-btn"><i class="fa-solid fa-sliders"></i> Manage Devices</button>
+            </div>
+          </div>
+          <div class="hero-graphic">
+            <div class="orb-container">
+              <div class="glowing-orb"></div>
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="device-node node-1"><i class="fa-solid fa-tv"></i></div>
+              <div class="device-node node-2"><i class="fa-solid fa-mobile-screen"></i></div>
+              <div class="device-node node-3"><i class="fa-solid fa-snowflake"></i></div>
+              <div class="device-node node-4"><i class="fa-solid fa-headphones"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-icon icon-blue"><i class="fa-solid fa-bolt"></i></div>
+              <span class="stat-trend positive"><i class="fa-solid fa-arrow-down"></i> -14%</span>
+            </div>
+            <div class="stat-value">2.4 <span class="unit">kWh</span></div>
+            <div class="stat-label">Daily Power Consumption</div>
+            <div class="stat-bar"><div class="stat-fill" style="width: 42%;"></div></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-icon icon-purple"><i class="fa-solid fa-wifi"></i></div>
+              <span class="stat-trend positive">Optimal</span>
+            </div>
+            <div class="stat-value">14/14</div>
+            <div class="stat-label">Devices Connected</div>
+            <div class="stat-bar"><div class="stat-fill fill-purple" style="width: 100%;"></div></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-icon icon-cyan"><i class="fa-solid fa-temperature-half"></i></div>
+              <span class="stat-trend neutral">Target 22°C</span>
+            </div>
+            <div class="stat-value">21.5<span class="unit">°C</span></div>
+            <div class="stat-label">Indoor Climate Sync</div>
+            <div class="stat-bar"><div class="stat-fill fill-cyan" style="width: 72%;"></div></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-icon icon-emerald"><i class="fa-solid fa-shield-check"></i></div>
+              <span class="stat-trend positive">Knox Vault</span>
+            </div>
+            <div class="stat-value">100<span class="unit">%</span></div>
+            <div class="stat-label">Security & Encryption</div>
+            <div class="stat-bar"><div class="stat-fill fill-emerald" style="width: 100%;"></div></div>
+          </div>
+        </div>
+
+        <!-- Dashboard Layout Split -->
+        <div class="dashboard-split">
+          <!-- Left Column: Quick Scene Control -->
+          <div class="split-left">
+            <div class="section-card">
+              <div class="card-header">
+                <h3><i class="fa-solid fa-sliders"></i> Active Smart Scenes</h3>
+                <button class="link-btn" id="add-scene-btn">+ Create Scene</button>
+              </div>
+
+              <div class="scenes-grid">
+                <div class="scene-card active" data-scene="cinema">
+                  <div class="scene-icon"><i class="fa-solid fa-film"></i></div>
+                  <div class="scene-info">
+                    <h4>Cinema Mode</h4>
+                    <p>TV 85", Lights 15%, Soundbar Surround</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" checked class="scene-toggle">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="scene-card" data-scene="work">
+                  <div class="scene-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                  <div class="scene-info">
+                    <h4>Focus Workstation</h4>
+                    <p>Odyssey OLED 6500K, ANC High</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" class="scene-toggle">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="scene-card" data-scene="night">
+                  <div class="scene-icon"><i class="fa-solid fa-moon"></i></div>
+                  <div class="scene-info">
+                    <h4>Good Night Automation</h4>
+                    <p>Doors Locked, Air Purifier Quiet</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" class="scene-toggle">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="scene-card" data-scene="party">
+                  <div class="scene-icon"><i class="fa-solid fa-music"></i></div>
+                  <div class="scene-info">
+                    <h4>Music Flow</h4>
+                    <p>Multi-room Audio, Dynamic RGB</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" class="scene-toggle">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Featured Devices Deck -->
+            <div class="section-card">
+              <div class="card-header">
+                <h3><i class="fa-solid fa-tv"></i> Living Room Media & Display</h3>
+                <span class="status-badge online"><i class="fa-solid fa-circle"></i> Connected</span>
+              </div>
+              <div class="media-widget">
+                <div class="media-preview">
+                  <div class="tv-mockup">
+                    <div class="tv-screen">
+                      <div class="tv-content">
+                        <span class="now-playing-tag"><i class="fa-solid fa-play"></i> Samsung TV Plus | 8K HDR</span>
+                        <h4>Nature Ultra HD: Deep Cosmic Exploration</h4>
+                        <div class="audio-wave">
+                          <span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="media-controls">
+                  <div class="control-row">
+                    <button class="control-btn" id="tv-power-btn"><i class="fa-solid fa-power-off"></i> Power</button>
+                    <button class="control-btn" id="tv-input-btn"><i class="fa-solid fa-hdmi"></i> HDMI 1</button>
+                    <button class="control-btn" id="tv-mode-btn"><i class="fa-solid fa-wand-magic"></i> AI Upscaling</button>
+                  </div>
+                  <div class="volume-slider-group">
+                    <i class="fa-solid fa-volume-high"></i>
+                    <input type="range" min="0" max="100" value="45" id="tv-volume" class="range-slider">
+                    <span id="volume-val">45%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Realtime Chart & Galaxy AI Insights -->
+          <div class="split-right">
+            <div class="section-card">
+              <div class="card-header">
+                <h3><i class="fa-solid fa-chart-line"></i> Realtime Power Grid</h3>
+                <div class="pill-group">
+                  <button class="pill-btn active">Live</button>
+                  <button class="pill-btn">24h</button>
+                  <button class="pill-btn">7d</button>
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="dashboard-energy-chart"></canvas>
+              </div>
+            </div>
+
+            <div class="section-card ai-insight-card">
+              <div class="ai-insight-header">
+                <div class="ai-badge"><i class="fa-solid fa-microchip"></i> Galaxy AI Assistant</div>
+                <span class="time-stamp">Just Now</span>
+              </div>
+              <h4>Smart Saving Opportunity Detected</h4>
+              <p>Your Bespoke Air Conditioner has been running continuously for 3 hours. Based on outdoor temperature (19°C), activating Eco Flow mode will save ~1.2 kWh today.</p>
+              <div class="ai-actions">
+                <button class="btn btn-sm btn-primary" id="apply-ai-eco">Apply Eco Flow</button>
+                <button class="btn btn-sm btn-outline" id="dismiss-ai">Dismiss</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB CONTENT: SmartThings IoT Controller -->
+      <section class="tab-pane" id="tab-smarthome">
+        <div class="tab-header-strip">
+          <div class="room-selector">
+            <button class="room-chip active" data-room="all">All Rooms (14)</button>
+            <button class="room-chip" data-room="living">Living Room (5)</button>
+            <button class="room-chip" data-room="bedroom">Master Bedroom (3)</button>
+            <button class="room-chip" data-room="kitchen">Kitchen Hub (4)</button>
+            <button class="room-chip" data-room="office">Smart Office (2)</button>
+          </div>
+          <button class="btn btn-primary" id="add-device-btn"><i class="fa-solid fa-plus"></i> Add Device</button>
+        </div>
+
+        <div class="devices-grid" id="devices-container">
+          <!-- Devices generated via JS -->
+        </div>
+      </section>
+
+      <!-- TAB CONTENT: Galaxy AI Studio -->
+      <section class="tab-pane" id="tab-galaxy-ai">
+        <div class="ai-studio-container">
+          <div class="ai-studio-sidebar">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> AI Suite Capabilities</h3>
+            <div class="ai-tool-list">
+              <button class="ai-tool-item active" data-tool="image-gen">
+                <i class="fa-solid fa-image"></i>
+                <div>
+                  <strong>Generative Edit 2.0</strong>
+                  <small>Create ultra-HD wallpapers & scenes</small>
+                </div>
+              </button>
+              <button class="ai-tool-item" data-tool="text-summary">
+                <i class="fa-solid fa-file-contract"></i>
+                <div>
+                  <strong>Live Interpreter & Note Assist</strong>
+                  <small>Instant translation & auto-bullet points</small>
+                </div>
+              </button>
+              <button class="ai-tool-item" data-tool="scene-predict">
+                <i class="fa-solid fa-brain"></i>
+                <div>
+                  <strong>Smart Home Scene Intelligence</strong>
+                  <small>Predictive behavior scheduling</small>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="ai-studio-main">
+            <div class="tool-viewport active" id="tool-image-gen">
+              <div class="tool-header">
+                <h2>Generative AI Wallpaper & Scene Designer</h2>
+                <p>Powered by Galaxy AI Vision Engine</p>
+              </div>
+
+              <div class="prompt-box-wrapper">
+                <div class="prompt-input-group">
+                  <i class="fa-solid fa-sparkles prompt-icon"></i>
+                  <input type="text" id="ai-prompt-input" placeholder="e.g. Futuristic cybernetic neon Samsung Tokyo showroom with sleek glass reflection..." value="Futuristic minimalist cybernetic lounge with sleek Samsung Neo QLED display glowing softly in deep blue ambience">
+                  <button class="btn btn-primary" id="generate-ai-img-btn"><i class="fa-solid fa-wand-sparkles"></i> Generate HD Art</button>
+                </div>
+
+                <div class="prompt-tags">
+                  <span class="tag-title">Quick presets:</span>
+                  <button class="preset-tag" data-prompt="Minimalist Scandinavian living space with warm ambient lighting and Samsung Frame TV showing art">Scandinavian Interior</button>
+                  <button class="preset-tag" data-prompt="Cyberpunk gaming setup with Samsung Odyssey OLED monitors and neon purple aesthetic">Cyberpunk Setup</button>
+                  <button class="preset-tag" data-prompt="Ultra modern eco smart home with glass walls overlooking tropical waterfall">Eco Smart Villa</button>
+                </div>
+              </div>
+
+              <div class="ai-output-area">
+                <div class="image-preview-frame" id="ai-image-output">
+                  <div class="placeholder-state" id="ai-placeholder">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <p>Enter a prompt above or choose a preset to generate AI scene art.</p>
+                  </div>
+                  <img id="generated-image" src="" alt="AI Generated Scene" class="hidden">
+                  <div class="loader-overlay hidden" id="ai-loader">
+                    <div class="spinner"></div>
+                    <p>Galaxy NPU processing neural render layers...</p>
+                  </div>
+                </div>
+
+                <div class="image-actions hidden" id="ai-img-actions">
+                  <button class="btn btn-glass" id="apply-wallpaper-btn"><i class="fa-solid fa-tv"></i> Set to Neo QLED TV</button>
+                  <button class="btn btn-glass" id="send-phone-btn"><i class="fa-solid fa-mobile-screen"></i> Sync to Galaxy S25 Ultra</button>
+                  <button class="btn btn-primary" id="download-art-btn"><i class="fa-solid fa-download"></i> Save Ultra-HD</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="tool-viewport hidden" id="tool-text-summary">
+              <div class="tool-header">
+                <h2>Live Interpreter & Note Assist</h2>
+                <p>Real-time audio transcribe & semantic summary</p>
+              </div>
+
+              <div class="text-assist-grid">
+                <div class="input-panel">
+                  <label>Input Document / Audio Transcript:</label>
+                  <textarea id="note-input" rows="8" placeholder="Paste transcript or notes here...">Samsung SmartThings ecosystem seamlessly connects over 300 million global users to their smart homes. With integrated Galaxy AI, SmartThings automatically adjusts lighting based on circadian rhythms, optimizes HVAC energy consumption through Knox Smart Metering, and delivers proactive hardware diagnostics before components wear down. Users can also sync their Galaxy Watch 7 health metrics to adjust sleep ambient temperatures automatically.</textarea>
+                  <div class="panel-actions">
+                    <button class="btn btn-primary" id="summarize-btn"><i class="fa-solid fa-bolt"></i> Summarize & Action Items</button>
+                    <button class="btn btn-glass" id="translate-btn"><i class="fa-solid fa-language"></i> Translate to Korean</button>
+                  </div>
+                </div>
+
+                <div class="output-panel">
+                  <label>Galaxy AI Output & Executive Bullet Points:</label>
+                  <div class="ai-summary-result" id="summary-result">
+                    <div class="summary-box">
+                      <h4><i class="fa-solid fa-check-double"></i> Key Takeaways</h4>
+                      <ul>
+                        <li><strong>Scale:</strong> 300M+ global connected users on SmartThings.</li>
+                        <li><strong>AI Circadian Sync:</strong> Automatic lighting adjustment based on sleep/wake cycles.</li>
+                        <li><strong>Knox Metering:</strong> Proactive energy optimization & hardware health protection.</li>
+                        <li><strong>Bio-Integration:</strong> Galaxy Watch 7 biometrics auto-adjust room ambient climate.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB CONTENT: 3D Product Configurator & Showcase -->
+      <section class="tab-pane" id="tab-showcase">
+        <div class="configurator-wrapper">
+          <div class="config-view">
+            <div class="product-stage">
+              <div class="stage-glow"></div>
+              <div class="product-preview" id="product-display">
+                <!-- Interactive product graphic rendered dynamically -->
+                <div class="product-model-card" id="active-product-model">
+                  <div class="model-badge">Flagship 2026</div>
+                  <div class="model-img-wrapper">
+                    <div class="device-render-frame" id="device-render">
+                      <div class="galaxy-s25-render" id="render-graphic">
+                        <div class="camera-island">
+                          <span></span><span></span><span></span>
+                        </div>
+                        <div class="screen-shine"></div>
+                        <div class="screen-content-sim">
+                          <i class="fa-solid fa-atom"></i>
+                          <span>Galaxy S25 Ultra</span>
+                          <small>Titanium Blue Edition</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stage-controls">
+                <button class="rotate-btn" id="rotate-left"><i class="fa-solid fa-rotate-left"></i></button>
+                <span class="rotation-label">360° Interactive Studio</span>
+                <button class="rotate-btn" id="rotate-right"><i class="fa-solid fa-rotate-right"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="config-sidebar">
+            <div class="product-selector-tabs">
+              <button class="prod-tab active" data-prod="s25">Galaxy S25 Ultra</button>
+              <button class="prod-tab" data-prod="fold6">Galaxy Z Fold6</button>
+              <button class="prod-tab" data-prod="qled8k">Neo QLED 8K</button>
+              <button class="prod-tab" data-prod="odyssey">Odyssey OLED G9</button>
+            </div>
+
+            <div class="config-details">
+              <h2 id="config-title">Galaxy S25 Ultra</h2>
+              <div class="rating-strip">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.9/5 (1,420 Reviews)</span>
+              </div>
+              <p class="config-desc" id="config-desc">Equipped with Snapdragon 8 Gen 4, Titanium frame, and embedded S-Pen with real-time Galaxy AI camera zoom processing.</p>
+
+              <div class="option-group">
+                <label>Select Finish & Titanium Color:</label>
+                <div class="color-swatches">
+                  <button class="swatch active" data-color="#1e293b" data-color-name="Titanium Black" style="background: #1e293b;"></button>
+                  <button class="swatch" data-color="#0284c7" data-color-name="Titanium Blue" style="background: #0284c7;"></button>
+                  <button class="swatch" data-color="#e2e8f0" data-color-name="Titanium Silver" style="background: #e2e8f0;"></button>
+                  <button class="swatch" data-color="#d97706" data-color-name="Titanium Amber" style="background: #d97706;"></button>
+                </div>
+                <span class="selected-color-label" id="color-label">Color: Titanium Black</span>
+              </div>
+
+              <div class="option-group">
+                <label>Storage Capacity:</label>
+                <div class="size-pills">
+                  <button class="size-pill" data-price="1299">256 GB</button>
+                  <button class="size-pill active" data-price="1419">512 GB</button>
+                  <button class="size-pill" data-price="1650">1 TB (Special Edition)</button>
+                </div>
+              </div>
+
+              <div class="specs-summary">
+                <div class="spec-row">
+                  <span>Display</span>
+                  <strong>6.8" Dynamic AMOLED 2X 120Hz</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Processor</span>
+                  <strong>Snapdragon 8 Gen 4 for Galaxy</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Camera System</span>
+                  <strong>200 MP Main + 50MP Periscope 5x</strong>
+                </div>
+                <div class="spec-row">
+                  <span>SmartThings Sync</span>
+                  <strong>Instant Auto-Pairing</strong>
+                </div>
+              </div>
+
+              <div class="price-footer">
+                <div class="price-box">
+                  <span class="price-label">Starting Price</span>
+                  <span class="price-amount" id="product-price">$1,419.00</span>
+                </div>
+                <button class="btn btn-primary btn-lg" id="add-to-cart-btn"><i class="fa-solid fa-cart-shopping"></i> Order with Galaxy VIP Perks</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB CONTENT: Energy & Eco Grid -->
+      <section class="tab-pane" id="tab-energy">
+        <div class="energy-hero-grid">
+          <div class="energy-score-card">
+            <div class="score-circle">
+              <svg viewBox="0 0 36 36" class="circular-chart green">
+                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="circle" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <text x="18" y="20.35" class="percentage">92%</text>
+              </svg>
+            </div>
+            <div class="score-details">
+              <h3>Eco-Smart Rating: A+</h3>
+              <p>Your home energy efficiency is in the top 5% of SmartThings households in your region.</p>
+              <div class="saving-metric"><i class="fa-solid fa-leaf"></i> Saved 184 kg CO2 this month</div>
+            </div>
+          </div>
+
+          <div class="solar-battery-card">
+            <h3><i class="fa-solid fa-solar-panel"></i> Solar & Battery Reserve</h3>
+            <div class="battery-meter">
+              <div class="battery-header">
+                <span>Powerwall Battery Pack</span>
+                <strong id="battery-pct">88% (12.4 kWh)</strong>
+              </div>
+              <div class="battery-track">
+                <div class="battery-fill" style="width: 88%;"></div>
+              </div>
+              <div class="power-nodes">
+                <div class="node"><i class="fa-solid fa-sun"></i> Solar: 4.8 kW Generation</div>
+                <div class="node"><i class="fa-solid fa-plug"></i> Grid Feed-in: +1.2 kW</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card margin-top-lg">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-chart-area"></i> Monthly Power Consumption vs Solar Production</h3>
+          </div>
+          <div class="large-chart-wrapper">
+            <canvas id="eco-grid-chart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB CONTENT: Device Health & Diagnostics -->
+      <section class="tab-pane" id="tab-diagnostics">
+        <div class="diagnostics-wrapper">
+          <div class="section-card diag-scanner-card">
+            <div class="diag-header">
+              <div>
+                <h2>Knox Hardware Health Scanner</h2>
+                <p>Run deep AI neural diagnostics across connected sensors, memory, battery degradation, and network latencies.</p>
+              </div>
+              <button class="btn btn-primary" id="run-diag-btn"><i class="fa-solid fa-microchip"></i> Run Full System Scan</button>
+            </div>
+
+            <div class="scan-progress-bar hidden" id="scan-progress-box">
+              <div class="scan-label">Scanning Knox Cryptographic Security & Battery Cells... <span id="scan-pct">0%</span></div>
+              <div class="progress-track"><div class="progress-fill" id="scan-fill"></div></div>
+            </div>
+          </div>
+
+          <div class="diag-results-grid">
+            <div class="diag-card">
+              <div class="diag-icon green"><i class="fa-solid fa-battery-full"></i></div>
+              <div class="diag-info">
+                <h4>Galaxy S25 Ultra Battery</h4>
+                <p>Health: 98% (320 Cycles). Optimized charging pattern active.</p>
+              </div>
+              <span class="badge badge-success">Good</span>
+            </div>
+
+            <div class="diag-card">
+              <div class="diag-icon blue"><i class="fa-solid fa-wifi"></i></div>
+              <div class="diag-info">
+                <h4>Wi-Fi 7 Mesh Network</h4>
+                <p>Latency: 4ms. Bandwidth: 1.8 Gbps download.</p>
+              </div>
+              <span class="badge badge-success">Ultra Fast</span>
+            </div>
+
+            <div class="diag-card">
+              <div class="diag-icon orange"><i class="fa-solid fa-filter"></i></div>
+              <div class="diag-info">
+                <h4>Bespoke Air Purifier HEPA Filter</h4>
+                <p>Lifespan: 12% remaining. Replacement recommended in 14 days.</p>
+              </div>
+              <span class="badge badge-warning">Action Needed</span>
+            </div>
+
+            <div class="diag-card">
+              <div class="diag-icon green"><i class="fa-solid fa-shield-cat"></i></div>
+              <div class="diag-info">
+                <h4>Knox Matrix Security Agent</h4>
+                <p>Zero vulnerability breaches detected. Firmware updated today.</p>
+              </div>
+              <span class="badge badge-success">Secure</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay hidden" id="settings-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-sliders"></i> Vision Hub Preferences</h3>
+        <button class="close-modal" id="close-settings">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="pref-row">
+          <div>
+            <strong>Galaxy AI Auto Automation</strong>
+            <p>Allow AI to adjust lights & climate based on learned routine</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="pref-row">
+          <div>
+            <strong>Knox Real-time Cloud Sync</strong>
+            <p>Instant state mirror across all Galaxy phones & TVs</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="pref-row">
+          <div>
+            <strong>Ambient Lighting Audio Sync</strong>
+            <p>Pulse background colors with TV & Music media playback</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked id="ambient-sync-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="save-settings-btn">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
